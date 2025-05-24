@@ -1,0 +1,64 @@
+/* Ensures full-page layout with background */
+.home-container {
+    background-color: #f2f2f2; /* Light gray background */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Centers the About Us section */
+  main {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  
+  /* About Us Box */
+  .about-us {
+    background-color: white; 
+    color: #000; 
+    padding: 40px;
+    width: 90%;
+    max-width: 90%; 
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); 
+    text-align: left;
+  }
+  
+  /* Headings Styling */
+  .about-us h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .about-us h3 {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #333; /* Dark Gray */
+  }
+  
+  /* Paragraphs and lists */
+  .about-us p,
+  .about-us li {
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+  
+  /* Bullet points */
+  .about-us ul {
+    list-style: disc;
+    padding-left: 25px;
+  }
+  
+  /* Call-to-action */
+  .join-us {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 25px;
+  }
+  

@@ -1,0 +1,98 @@
+.login-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  .login-image {
+    width: 50%;
+  }
+  
+  .login-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .login-form {
+    width: 50%;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-form h2 {
+    width: 100%;  /* ✅ Makes h2 take full width */
+    text-align: center; /* Keeps text centered */
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-size: 1.8rem;
+  }
+  
+  .login-form form {
+    width: 100%;  /* ✅ Makes form take full width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-group {
+    width: 40%;  /* Ensures inputs take 40% of full page */
+    margin-bottom: 1.2rem;
+  }  
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1rem;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .login-btn {
+    width: 40%;
+    padding: 0.9rem;
+    background-color: #333;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .login-btn:hover {
+    background-color: #222;
+  }
+  
+  .register-text {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .register-link {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .register-link:hover {
+    text-decoration: underline;
+  }
+  
