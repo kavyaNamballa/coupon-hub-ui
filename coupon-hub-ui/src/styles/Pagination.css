@@ -1,0 +1,157 @@
+.pagination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pagination-info {
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pagination-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  background: white;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  min-width: 80px;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: #f8f9fa;
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f5f5f5;
+}
+
+.page-numbers {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.page-btn {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  background: white;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  min-width: 40px;
+  transition: all 0.2s ease;
+}
+
+.page-btn:hover {
+  background: #f8f9fa;
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.page-btn.active {
+  background: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.page-btn.active:hover {
+  background: #0056b3;
+  border-color: #0056b3;
+}
+
+.page-dots {
+  padding: 0.5rem 0.25rem;
+  color: #666;
+  font-weight: bold;
+}
+
+.page-size-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.page-size-select {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  font-size: 0.9rem;
+}
+
+.page-size-select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .pagination-container {
+    padding: 0.5rem;
+  }
+  
+  .pagination-controls {
+    gap: 0.25rem;
+  }
+  
+  .page-btn {
+    padding: 0.4rem 0.6rem;
+    min-width: 35px;
+    font-size: 0.8rem;
+  }
+  
+  .pagination-btn {
+    padding: 0.4rem 0.8rem;
+    min-width: 70px;
+    font-size: 0.8rem;
+  }
+  
+  .page-size-selector {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-numbers {
+    gap: 0.1rem;
+  }
+  
+  .page-btn {
+    padding: 0.3rem 0.5rem;
+    min-width: 30px;
+    font-size: 0.75rem;
+  }
+  
+  .pagination-btn {
+    padding: 0.3rem 0.6rem;
+    min-width: 60px;
+    font-size: 0.75rem;
+  }
+} 

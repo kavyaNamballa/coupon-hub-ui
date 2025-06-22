@@ -13,6 +13,7 @@ const Register = () => {
     lastName: "",
     email: "",
     password: "",
+    mobileNumber: "",
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -27,10 +28,10 @@ const Register = () => {
 
     UserService.registerUser(formData)
       .then((data) => {
-        toast.success("Registration successful!", {
+        toast.success("Registration successful! Please login to continue.", {
           position: "top-center",
         });
-        setTimeout(() => navigate("/"), 2000);
+        setTimeout(() => navigate("/login"), 2000);
       })
       .catch((errorMessage) => {
         toast.error(errorMessage, {
@@ -65,6 +66,16 @@ const Register = () => {
               type="text"
               placeholder="Enter your last name"
               name="lastName"
+              required
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Mobile Number</label>
+            <input
+              type="text"
+              name="mobileNumber"
+              placeholder="Enter your mobile number"
               required
               onChange={handleChange}
             />

@@ -1,16 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import amazon from "../assets/amazon-icon.svg";
-import myntra from "../assets/Myntra-icon-logo.svg";
-import flipkart from "../assets/flipkart-icon.svg";
-import ajio from "../assets/ajio_logo.jpeg";
 import "../styles/Brands.css";
-
-const brands = [
-  { name: "Amazon", image: amazon },
-  { name: "Myntra", image: myntra },
-  { name: "Flipkart", image: flipkart },
-  { name: "Ajio", image: ajio },
-];
+import { brands } from "../enum/brands";
 
 const Brands = () => {
   const navigate = useNavigate();

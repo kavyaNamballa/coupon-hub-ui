@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { UserData } from "../models/UserData";
 import { UserService } from "../service/UserService";
 import { AuthImage } from "../components/AuthImage";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const [formData, setFormData] = useState<UserData>({
@@ -13,6 +14,7 @@ const Login = () => {
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,13 +26,13 @@ const Login = () => {
 
     UserService.loginUser(formData)
       .then((data) => {
-        localStorage.setItem("token", data);
+        login(data.token, data.user);
         toast.success("Login successful!", {
           position: "top-center",
         });
         setTimeout(() => navigate("/"), 1000);
       })
-      .catch((errorMessage) => {
+      .catch((errorMessage: string) => {
         toast.error(errorMessage, {
           position: "top-center",
         });
