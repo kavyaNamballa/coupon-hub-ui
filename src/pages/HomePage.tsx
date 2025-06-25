@@ -55,34 +55,82 @@ const Home = () => {
           </div>
           <div className="hero-visual">
             <div className="coupon-stack">
-              <div className="coupon-card coupon-1">
+              <div className="hero-coupon-card coupon-1">
                 <div className="coupon-header">
-                  <span className="store-name">Amazon</span>
+                  <div className="store-info">
+                    <div className="store-logo">🛒</div>
+                    <span className="store-name">Amazon</span>
+                  </div>
                   <span className="discount">20% OFF</span>
                 </div>
-                <div className="coupon-details">
-                  <p>Electronics & Gadgets</p>
-                  <span className="expiry">Expires: 15 Dec</span>
+                <div className="coupon-content">
+                  <div className="coupon-details">
+                    <p className="category">Electronics & Gadgets</p>
+                    <p className="description">
+                      Get amazing discounts on smartphones, laptops, and more!
+                    </p>
+                  </div>
+                  <div className="coupon-meta">
+                    <div className="usage-info">
+                      <span className="usage-count">🔥 1.2K used</span>
+                      <span className="expiry">⏰ Expires: 15 Dec</span>
+                    </div>
+                    <div className="min-purchase">
+                      <span>Min. Purchase: ₹999</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="coupon-card coupon-2">
+              <div className="hero-coupon-card coupon-2">
                 <div className="coupon-header">
-                  <span className="store-name">Myntra</span>
+                  <div className="store-info">
+                    <div className="store-logo">👗</div>
+                    <span className="store-name">Myntra</span>
+                  </div>
                   <span className="discount">₹500 OFF</span>
                 </div>
-                <div className="coupon-details">
-                  <p>Fashion & Lifestyle</p>
-                  <span className="expiry">Expires: 20 Dec</span>
+                <div className="coupon-content">
+                  <div className="coupon-details">
+                    <p className="category">Fashion & Lifestyle</p>
+                    <p className="description">
+                      Upgrade your wardrobe with trendy fashion items!
+                    </p>
+                  </div>
+                  <div className="coupon-meta">
+                    <div className="usage-info">
+                      <span className="usage-count">🔥 856 used</span>
+                      <span className="expiry">⏰ Expires: 20 Dec</span>
+                    </div>
+                    <div className="min-purchase">
+                      <span>Min. Purchase: ₹1499</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="coupon-card coupon-3">
+              <div className="hero-coupon-card coupon-3">
                 <div className="coupon-header">
-                  <span className="store-name">Flipkart</span>
+                  <div className="store-info">
+                    <div className="store-logo">🏠</div>
+                    <span className="store-name">Flipkart</span>
+                  </div>
                   <span className="discount">15% OFF</span>
                 </div>
-                <div className="coupon-details">
-                  <p>Home & Kitchen</p>
-                  <span className="expiry">Expires: 25 Dec</span>
+                <div className="coupon-content">
+                  <div className="coupon-details">
+                    <p className="category">Home & Kitchen</p>
+                    <p className="description">
+                      Transform your home with premium kitchen appliances!
+                    </p>
+                  </div>
+                  <div className="coupon-meta">
+                    <div className="usage-info">
+                      <span className="usage-count">🔥 2.1K used</span>
+                      <span className="expiry">⏰ Expires: 25 Dec</span>
+                    </div>
+                    <div className="min-purchase">
+                      <span>Min. Purchase: ₹799</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

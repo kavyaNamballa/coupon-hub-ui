@@ -7,6 +7,12 @@
   overflow: hidden;
   margin: 20px;
   border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for auth container */
+.dark-mode .auth-container {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
 }
 
 .auth-container::before {
@@ -56,6 +62,13 @@
   backdrop-filter: blur(10px);
   position: relative;
   z-index: 1;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for auth form */
+.dark-mode .auth-form {
+  background: rgba(71, 85, 105, 0.95);
+  color: #ecf0f1;
 }
 
 .auth-form h2 {
@@ -65,6 +78,15 @@
   margin-bottom: 2rem;
   text-align: center;
   background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for auth form title */
+.dark-mode .auth-form h2 {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -87,6 +109,12 @@
   font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for form labels */
+.dark-mode .form-group label {
+  color: #bdc3c7;
 }
 
 .form-group input {
@@ -101,6 +129,13 @@
   box-sizing: border-box;
 }
 
+/* Dark mode for form inputs */
+.dark-mode .form-group input {
+  background: #64748b;
+  border: 2px solid #94a3b8;
+  color: #ecf0f1;
+}
+
 .form-group input:focus {
   outline: none;
   border-color: #667eea;
@@ -108,9 +143,20 @@
   transform: translateY(-2px);
 }
 
+/* Dark mode for form input focus */
+.dark-mode .form-group input:focus {
+  border-color: #ffd700;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+}
+
 .form-group input::placeholder {
   color: #999;
   font-style: italic;
+}
+
+/* Dark mode for placeholder */
+.dark-mode .form-group input::placeholder {
+  color: #94a3b8;
 }
 
 .auth-btn {
@@ -131,6 +177,12 @@
   overflow: hidden;
 }
 
+/* Dark mode for auth button */
+.dark-mode .auth-btn {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #1e293b;
+}
+
 .auth-btn::before {
   content: '';
   position: absolute;
@@ -142,6 +194,11 @@
   transition: left 0.5s;
 }
 
+/* Dark mode shimmer effect */
+.dark-mode .auth-btn::before {
+  background: linear-gradient(90deg, transparent, rgba(30, 41, 59, 0.2), transparent);
+}
+
 .auth-btn:hover::before {
   left: 100%;
 }
@@ -149,6 +206,11 @@
 .auth-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+/* Dark mode hover effect */
+.dark-mode .auth-btn:hover {
+  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
 }
 
 .auth-btn:disabled {
@@ -167,6 +229,12 @@
   text-align: center;
   color: #666;
   font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for auth text */
+.dark-mode .auth-text {
+  color: #bdc3c7;
 }
 
 .auth-link {
@@ -175,6 +243,11 @@
   font-weight: 600;
   transition: all 0.3s ease;
   position: relative;
+}
+
+/* Dark mode for auth links */
+.dark-mode .auth-link {
+  color: #ffd700;
 }
 
 .auth-link::after {
@@ -188,12 +261,22 @@
   transition: width 0.3s ease;
 }
 
+/* Dark mode for auth link underline */
+.dark-mode .auth-link::after {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+}
+
 .auth-link:hover::after {
   width: 100%;
 }
 
 .auth-link:hover {
   color: #764ba2;
+}
+
+/* Dark mode hover effect */
+.dark-mode .auth-link:hover {
+  color: #ffed4e;
 }
 
 /* Responsive Design */

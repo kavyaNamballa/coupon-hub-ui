@@ -1,15 +1,17 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../styles/HeaderFooter.css";
 import { useAuth } from "../context/AuthContext";
 import { useState, useEffect } from "react";
+import lightSwitchOn from "../assets/20170101-light-switch-on-80675.mp3";
+import lightSwitchOff from "../assets/light-switch-81967.mp3";
 
 const Header = () => {
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    // Check for saved theme preference or default to light mode
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "dark") {
       setIsDarkMode(true);
@@ -17,14 +19,24 @@ const Header = () => {
     }
   }, []);
 
+  const playSound = (audioFile: string) => {
+    const audio = new Audio(audioFile);
+    audio.volume = 0.3;
+    audio.play().catch((error) => {
+      console.log("Audio playback failed:", error);
+    });
+  };
+
   const toggleTheme = () => {
     const newMode = !isDarkMode;
     setIsDarkMode(newMode);
 
     if (newMode) {
+      playSound(lightSwitchOn);
       document.body.classList.add("dark-mode");
       localStorage.setItem("theme", "dark");
     } else {
+      playSound(lightSwitchOff);
       document.body.classList.remove("dark-mode");
       localStorage.setItem("theme", "light");
     }
@@ -33,6 +45,13 @@ const Header = () => {
   const handleLogout = () => {
     logout();
     navigate("/login");
+  };
+
+  const isActive = (path: string) => {
+    if (path === "/") {
+      return location.pathname === "/";
+    }
+    return location.pathname.startsWith(path);
   };
 
   return (
@@ -46,10 +65,13 @@ const Header = () => {
         </div>
 
         <nav className="nav-links">
-          <Link to="/" className="nav-link">
+          <Link to="/" className={`nav-link ${isActive("/") ? "active" : ""}`}>
             Home
           </Link>
-          <Link to="/coupons" className="nav-link">
+          <Link
+            to="/coupons"
+            className={`nav-link ${isActive("/coupons") ? "active" : ""}`}
+          >
             Coupons
           </Link>
 
@@ -63,7 +85,12 @@ const Header = () => {
 
           {isAuthenticated ? (
             <>
-              <Link to="/profile" className="nav-link profile-link">
+              <Link
+                to="/profile"
+                className={`nav-link profile-link ${
+                  isActive("/profile") ? "active" : ""
+                }`}
+              >
                 <span className="profile-icon">👤</span>
                 <span className="profile-text">Profile</span>
               </Link>

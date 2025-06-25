@@ -4,6 +4,13 @@
   margin: 0 auto;
   padding: 40px 20px;
   min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for profile container */
+.dark-mode .profile-container {
+  background: #1e293b;
+  color: #ecf0f1;
 }
 
 .profile-header {
@@ -13,6 +20,12 @@
   margin-bottom: 40px;
   padding-bottom: 20px;
   border-bottom: 2px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for profile header */
+.dark-mode .profile-header {
+  border-bottom: 2px solid #64748b;
 }
 
 .profile-header h1 {
@@ -23,6 +36,15 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin: 0;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for profile header title */
+.dark-mode .profile-header h1 {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .upload-btn {
@@ -43,6 +65,17 @@
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
 }
 
+/* Dark mode for upload button */
+.dark-mode .upload-btn {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #1e293b;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.dark-mode .upload-btn:hover {
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
 /* Profile Stats */
 .profile-stats {
   display: grid;
@@ -61,9 +94,23 @@
   transition: all 0.3s ease;
 }
 
+/* Dark mode for stat cards */
+.dark-mode .stat-card {
+  background: #475569;
+  border: 1px solid #64748b;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  color: #ecf0f1;
+}
+
 .stat-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode hover effect */
+.dark-mode .stat-card:hover {
+  box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+  border-color: #ffd700;
 }
 
 .stat-card h3 {
@@ -71,12 +118,27 @@
   font-size: 1rem;
   margin-bottom: 10px;
   font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for stat card labels */
+.dark-mode .stat-card h3 {
+  color: #bdc3c7;
 }
 
 .stat-number {
   font-size: 2.5rem;
   font-weight: 700;
   background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for stat numbers */
+.dark-mode .stat-number {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -109,6 +171,14 @@
   border-radius: 16px;
   padding: 30px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for user coupons section */
+.dark-mode .user-coupons {
+  background: #475569;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid #64748b;
 }
 
 .user-coupons h2 {
@@ -117,12 +187,24 @@
   color: #333;
   margin-bottom: 30px;
   text-align: center;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for user coupons heading */
+.dark-mode .user-coupons h2 {
+  color: #ffd700;
 }
 
 .empty-state {
   text-align: center;
   padding: 60px 20px;
   color: #666;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for empty state */
+.dark-mode .empty-state {
+  color: #bdc3c7;
 }
 
 .empty-state p {
@@ -159,6 +241,14 @@
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for upload modal */
+.dark-mode .upload-modal {
+  background: #475569;
+  color: #ecf0f1;
+  border: 1px solid #64748b;
 }
 
 .modal-header {
@@ -167,6 +257,12 @@
   align-items: center;
   padding: 24px 30px;
   border-bottom: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for modal header */
+.dark-mode .modal-header {
+  border-bottom: 1px solid #64748b;
 }
 
 .modal-header h2 {
@@ -174,6 +270,12 @@
   font-weight: 600;
   color: #333;
   margin: 0;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for modal header title */
+.dark-mode .modal-header h2 {
+  color: #ffd700;
 }
 
 .close-btn {
@@ -195,6 +297,16 @@
 .close-btn:hover {
   background: #f8f9fa;
   color: #333;
+}
+
+/* Dark mode for close button */
+.dark-mode .close-btn {
+  color: #bdc3c7;
+}
+
+.dark-mode .close-btn:hover {
+  background: #64748b;
+  color: #ffd700;
 }
 
 .upload-form {

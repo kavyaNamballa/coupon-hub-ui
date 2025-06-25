@@ -7,6 +7,14 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   max-width: 1200px;
   width: 90%;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for brand container */
+.dark-mode .brand-icons-container {
+  background: #475569;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid #64748b;
 }
 
 .brand-icons-title {
@@ -15,6 +23,15 @@
   color: #333;
   font-weight: 700;
   background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for brand title */
+.dark-mode .brand-icons-title {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -66,6 +83,13 @@
   overflow: hidden;
 }
 
+/* Dark mode for brand cards */
+.dark-mode .brand-card {
+  background: linear-gradient(135deg, #64748b, #475569);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border: 2px solid #64748b;
+}
+
 .brand-card::before {
   content: '';
   position: absolute;
@@ -75,6 +99,11 @@
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
   transition: left 0.5s;
+}
+
+/* Dark mode shimmer effect */
+.dark-mode .brand-card::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
 }
 
 .brand-card:hover::before {
@@ -89,6 +118,14 @@
   color: #333;
 }
 
+/* Dark mode hover effect */
+.dark-mode .brand-card:hover {
+  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
+  border-color: #ffd700;
+  background: linear-gradient(135deg, #64748b, #475569);
+  color: #ecf0f1;
+}
+
 .brand-card:hover img {
   filter: none;
   transform: scale(1.1);
@@ -97,6 +134,11 @@
 .brand-card:hover span {
   color: #667eea;
   font-weight: 700;
+}
+
+/* Dark mode hover text color */
+.dark-mode .brand-card:hover span {
+  color: #ffd700;
 }
 
 .brand-card img {
@@ -118,6 +160,11 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+/* Dark mode for brand names */
+.dark-mode .brand-card span {
+  color: #ecf0f1;
 }
 
 /* Add some animation for brand cards */

@@ -5,6 +5,12 @@
   min-width: 100vw;
   display: flex;
   flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for home container */
+.dark-mode .home-container {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
 }
 
 /* Hero Section */
@@ -14,6 +20,12 @@
   color: white;
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for hero section */
+.dark-mode .hero-section {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
 }
 
 .hero-section::before {
@@ -141,24 +153,27 @@
 
 .coupon-stack {
   position: relative;
-  width: 280px;
-  height: 160px;
+  width: 450px;
+  height: 300px;
+  overflow: visible;
 }
 
-.coupon-card {
+.hero-coupon-card {
   position: absolute;
-  width: 100%;
-  height: 10px;
+  width: 300px;
+  height: 230px;
+  padding: 15px;
+  overflow: hidden;
   background: white;
   border-radius: 12px;
-  padding: 15px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
-.coupon-card:hover {
+.hero-coupon-card:hover {
   transform: translateY(-8px) scale(1.05);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
   z-index: 10;
@@ -172,17 +187,17 @@
 }
 
 .coupon-2 {
-  top: 20px;
-  left: 15px;
+  top: 50px;
+  left: 50px;
   z-index: 2;
-  transform: rotate(1deg);
+  transform: rotate(0deg);
 }
 
 .coupon-3 {
-  top: 40px;
-  left: 30px;
-  z-index: 1;
-  transform: rotate(-1deg);
+  top: 100px;
+  left: 100px;
+  z-index: 1; 
+  transform: rotate(2deg);
 }
 
 .coupon-header {
@@ -191,34 +206,122 @@
   align-items: center;
   color: #333;
   margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #f0f0f0;
+  flex-shrink: 0;
+  height: 40px;
+}
+
+.store-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.store-logo {
+  font-size: 1.2rem;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 5px;
+  color: white;
 }
 
 .store-name {
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #2c3e50;
 }
 
 .discount {
   background: linear-gradient(45deg, #ff6b6b, #ee5a24);
   color: white;
-  padding: 4px 10px;
-  border-radius: 15px;
-  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 700;
   font-size: 0.8rem;
+  box-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
 }
 
-.coupon-details p {
-  margin: 0 0 4px 0;
-  font-size: 0.85rem;
+.coupon-content {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 50px);
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.coupon-details {
+  flex: 1;
+  min-height: 0;
+  margin-bottom: 8px;
+  overflow: visible;
+}
+
+.coupon-details .category {
+  margin: 0 0 2px 0;
+  font-size: 0.9rem;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.coupon-details .description {
+  margin: 0;
+  font-size: 0.7rem;
   color: #666;
-  font-weight: 500;
+  line-height: 1.4;
+  font-weight: 400;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  max-height: 2.8em;
+}
+
+.coupon-meta {
+  flex-shrink: 0;
+  min-height: 35px;
+}
+
+.usage-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  font-size: 0.65rem;
+}
+
+.usage-count {
+  color: #e74c3c;
+  font-weight: 600;
+  background: rgba(231, 76, 60, 0.1);
+  padding: 2px 4px;
+  border-radius: 6px;
 }
 
 .expiry {
-  font-size: 0.75rem;
-  color: #999;
-  font-style: italic;
+  color: #f39c12;
+  font-weight: 500;
+  background: rgba(243, 156, 18, 0.1);
+  padding: 2px 4px;
+  border-radius: 6px;
+}
+
+.min-purchase {
+  text-align: center;
+  font-size: 0.65rem;
+  color: #7f8c8d;
+  font-weight: 500;
+  background: #f8f9fa;
+  padding: 2px 4px;
+  border-radius: 4px;
+  border: 1px solid #e9ecef;
 }
 
 /* How It Works Section */
@@ -226,6 +329,13 @@
   padding: 80px 20px;
   background: white;
   text-align: center;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for how-it-works */
+.dark-mode .how-it-works {
+  background: #334155;
+  color: #ecf0f1;
 }
 
 .section-title {
@@ -234,6 +344,12 @@
   color: #333;
   margin-bottom: 60px;
   text-align: center;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for section title */
+.dark-mode .section-title {
+  color: #ecf0f1;
 }
 
 .steps-container {
@@ -251,9 +367,22 @@
   transition: all 0.3s ease;
 }
 
+/* Dark mode for step cards */
+.dark-mode .step {
+  background: #475569;
+  color: #ecf0f1;
+  border: 1px solid #64748b;
+}
+
 .step:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode hover effect */
+.dark-mode .step:hover {
+  box-shadow: 0 15px 35px rgba(255, 215, 0, 0.2);
+  border-color: #ffd700;
 }
 
 .step-icon {
@@ -267,12 +396,24 @@
   font-weight: 600;
   color: #333;
   margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for step headings */
+.dark-mode .step h3 {
+  color: #ffd700;
 }
 
 .step p {
   color: #666;
   line-height: 1.6;
   font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for step descriptions */
+.dark-mode .step p {
+  color: #bdc3c7;
 }
 
 /* Main Content */
@@ -283,6 +424,28 @@ main {
   align-items: center;
   padding: 40px 20px;
   background: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for main content */
+.dark-mode main {
+  background: #1e293b;
+}
+
+/* Dark mode for coupon-stack */
+.dark-mode .hero-coupon-card,
+.dark-mode .category,
+.dark-mode .description,
+.dark-mode .store-info,
+.dark-mode .store-name,
+.dark-mode .min-purchase {
+  background: #475569;
+  color: #ecf0f1;
+}
+
+.dark-mode .hero-coupon-card,
+.dark-mode .min-purchase {
+  border: 1px solid #64748b;
 }
 
 /* About Us Box - Updated */
@@ -296,6 +459,15 @@ main {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   text-align: left;
   margin-top: 40px;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for about-us */
+.dark-mode .about-us {
+  background: #475569;
+  color: #ecf0f1;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid #64748b;
 }
 
 .about-us h2 {
@@ -304,6 +476,12 @@ main {
   margin-bottom: 40px;
   color: #333;
   font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for about-us heading */
+.dark-mode .about-us h2 {
+  color: #ffd700;
 }
 
 .about-us h3 {
@@ -311,6 +489,12 @@ main {
   font-size: 1.8rem;
   color: #667eea;
   font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for about-us subheadings */
+.dark-mode .about-us h3 {
+  color: #ffd700;
 }
 
 .about-us p,
@@ -318,6 +502,13 @@ main {
   font-size: 1.1rem;
   line-height: 1.8;
   color: #555;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for about-us text */
+.dark-mode .about-us p,
+.dark-mode .about-us li {
+  color: #bdc3c7;
 }
 
 .about-us ul {
@@ -330,6 +521,12 @@ main {
   border-bottom: 1px solid #eee;
   position: relative;
   padding-left: 30px;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for about-us list items */
+.dark-mode .about-us li {
+  border-bottom: 1px solid #64748b;
 }
 
 .about-us li::before {
@@ -339,6 +536,12 @@ main {
   color: #00b894;
   font-weight: bold;
   font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for checkmarks */
+.dark-mode .about-us li::before {
+  color: #ffd700;
 }
 
 .join-us {
@@ -350,6 +553,13 @@ main {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode for join-us section */
+.dark-mode .join-us {
+  background: linear-gradient(135deg, #475569, #334155);
+  border: 1px solid #64748b;
 }
 
 /* Responsive Design */
@@ -375,12 +585,12 @@ main {
 
   .coupon-stack {
     width: 250px;
-    height: 140px;
+    height: 200px;
   }
 
-  .coupon-card {
+  .hero-coupon-card {
     width: 230px;
-    height: 70px;
+    height: 160px;
     padding: 12px;
   }
 
@@ -388,17 +598,36 @@ main {
     font-size: 0.9rem;
   }
 
+  .store-logo {
+    font-size: 1.1rem;
+    width: 24px;
+    height: 24px;
+  }
+
   .discount {
     font-size: 0.75rem;
     padding: 3px 8px;
   }
 
-  .coupon-details p {
-    font-size: 0.8rem;
+  .coupon-details .category {
+    font-size: 0.85rem;
+    margin: 0 0 2px 0;
   }
 
-  .expiry {
+  .coupon-details .description {
     font-size: 0.7rem;
+    -webkit-line-clamp: 3;
+    max-height: 2.6em;
+    line-height: 1.3;
+  }
+
+  .usage-info {
+    font-size: 0.65rem;
+  }
+
+  .min-purchase {
+    font-size: 0.65rem;
+    padding: 2px 4px;
   }
 
   .steps-container {

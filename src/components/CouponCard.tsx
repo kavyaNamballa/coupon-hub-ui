@@ -86,7 +86,7 @@ const CouponCard: React.FC<CouponCardProps> = ({
             <span className="coupon-type">{coupon.couponType}</span>
             {coupon.minPurchaseAmount && (
               <span className="min-purchase">
-                Min: ${coupon.minPurchaseAmount}
+                Min: ₹{coupon.minPurchaseAmount}
               </span>
             )}
           </div>

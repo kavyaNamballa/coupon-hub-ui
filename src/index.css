@@ -37,6 +37,11 @@ body {
   transition: all 0.3s ease;
 }
 
+html {
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -72,13 +77,25 @@ button:focus-visible {
 
 /* Dark Mode Styles */
 .dark-mode {
-  background-color: #1a1a1a;
-  color: #ffffff;
+  background-color: #1e293b !important;
+  color: #ffffff !important;
 }
 
 .dark-mode body {
-  background-color: #1a1a1a;
-  color: #ffffff;
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+}
+
+.dark-mode html {
+  background-color: #1e293b !important;
+}
+
+.dark-mode .layout {
+  background-color: #1e293b !important;
+}
+
+.dark-mode .main-content {
+  background-color: #1e293b !important;
 }
 
 .dark-mode a {

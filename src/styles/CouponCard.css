@@ -15,6 +15,14 @@
   max-width: 100%;
 }
 
+/* Dark mode for coupon cards */
+.dark-mode .coupon-card {
+  background: #475569;
+  border: 1px solid #64748b;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  color: #ecf0f1;
+}
+
 .coupon-card::before {
   content: '';
   position: absolute;
@@ -25,9 +33,20 @@
   background: linear-gradient(135deg, #667eea, #764ba2);
 }
 
+/* Dark mode top border */
+.dark-mode .coupon-card::before {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+}
+
 .coupon-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Dark mode hover effect */
+.dark-mode .coupon-card:hover {
+  box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2);
+  border-color: #ffd700;
 }
 
 .coupon-header {
@@ -53,6 +72,14 @@
   overflow-wrap: break-word;
 }
 
+/* Dark mode for brand names */
+.dark-mode .coupon-brand h4 {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .wishlist-btn {
   background: none;
   border: none;
@@ -72,6 +99,11 @@
 .wishlist-btn:hover {
   background: rgba(102, 126, 234, 0.1);
   transform: scale(1.1);
+}
+
+/* Dark mode for wishlist button */
+.dark-mode .wishlist-btn:hover {
+  background: rgba(255, 215, 0, 0.2);
 }
 
 .wishlist-btn:disabled {
@@ -110,6 +142,11 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
   flex-shrink: 0;
+}
+
+/* Dark mode for coupon description */
+.dark-mode .coupon-description {
+  color: #bdc3c7;
 }
 
 .coupon-details {
@@ -164,6 +201,12 @@
   flex-shrink: 0;
 }
 
+/* Dark mode for coupon code section */
+.dark-mode .coupon-code-section {
+  background: #64748b;
+  border: 1px dashed #94a3b8;
+}
+
 .revealed-code {
   display: flex;
   flex-direction: column;
@@ -175,6 +218,11 @@
   color: #666;
   font-weight: 600;
   text-transform: uppercase;
+}
+
+/* Dark mode for code label */
+.dark-mode .code-label {
+  color: #bdc3c7;
 }
 
 .code-value {
@@ -190,6 +238,12 @@
   word-break: break-all;
 }
 
+/* Dark mode for code value */
+.dark-mode .code-value {
+  background: rgba(39, 174, 96, 0.2);
+  color: #2ecc71;
+}
+
 .hidden-code {
   text-align: center;
 }
@@ -198,8 +252,11 @@
   font-size: 1rem;
   font-weight: 700;
   color: #999;
-  font-family: 'Courier New', monospace;
-  letter-spacing: 2px;
+}
+
+/* Dark mode for code placeholder */
+.dark-mode .code-placeholder {
+  color: #94a3b8;
 }
 
 .coupon-meta {
