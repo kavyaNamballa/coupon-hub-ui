@@ -66,7 +66,7 @@ const Profile = () => {
         sortDirection,
       };
 
-      const response = await CouponService.getUserUploadedCouponsPaginated(
+      const response = await CouponService.getUserUploadedCoupons(
         user!.id,
         paginationParams
       );
@@ -135,11 +135,54 @@ const Profile = () => {
   };
 
   const handleWishlistChange = () => {
-    loadWishlistCount(); // Refresh wishlist count
+    loadWishlistCount();
   };
 
   const handleCouponUsed = () => {
-    loadUserCoupons(); // Refresh the list when coupon is used
+    loadUserCoupons();
+  };
+
+  const handleWishlistToggle = async (couponId: number) => {
+    if (!user?.id) {
+      toast.error("Please login to add to wishlist");
+      return;
+    }
+
+    try {
+      const currentStatus = await WishlistService.checkWishlistStatus(
+        user.id,
+        couponId
+      );
+      if (currentStatus) {
+        await WishlistService.removeFromWishlist(couponId, user.id);
+        toast.success("Removed from wishlist");
+      } else {
+        await WishlistService.addToWishlist(couponId, user.id);
+        toast.success("Added to wishlist");
+      }
+      loadWishlistCount();
+    } catch (error: any) {
+      toast.error(error?.message || "Failed to update wishlist");
+    }
+  };
+
+  const handleUseCoupon = async (couponId: number) => {
+    if (!user?.id) {
+      toast.error("Please login to use coupons");
+      return;
+    }
+
+    try {
+      const success = await CouponService.useCoupon(couponId, user.id);
+      if (success) {
+        toast.success("Coupon used successfully!");
+        loadUserCoupons();
+      } else {
+        toast.error("Failed to use coupon");
+      }
+    } catch (error: any) {
+      toast.error(error?.message || "Failed to use coupon");
+    }
   };
 
   const truncateDescription = (description: string, maxLength: number = 50) => {
@@ -259,9 +302,11 @@ const Profile = () => {
                 <CouponCard
                   key={coupon.id}
                   coupon={coupon}
-                  onWishlistChange={handleWishlistChange}
-                  onCouponUsed={handleCouponUsed}
-                  showActions={false} // Don't show actions for uploaded coupons
+                  onWishlistToggle={handleWishlistToggle}
+                  onUseCoupon={handleUseCoupon}
+                  isInWishlist={false}
+                  isWishlistLoading={false}
+                  hideActions={true}
                 />
               ))}
             </div>

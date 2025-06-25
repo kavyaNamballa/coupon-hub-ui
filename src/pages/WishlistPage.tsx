@@ -8,29 +8,47 @@ import { WishlistService } from "../service/WishlistService";
 import { CouponService } from "../service/CouponService";
 import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
-import dayjs from "dayjs";
 import "../styles/WishlistPage.css";
 import Pagination from "../components/Pagination";
+import CouponCard from "../components/CouponCard";
 
 const WishlistPage = () => {
-  const [loading, setLoading] = useState(true);
   const { user } = useAuth();
-
-  // Pagination state
+  const [loading, setLoading] = useState(true);
   const [paginationData, setPaginationData] =
     useState<PaginatedResponse<Coupon> | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
   const [sortBy, setSortBy] = useState("createdAt");
   const [sortDirection, setSortDirection] = useState<"ASC" | "DESC">("DESC");
+  const [remainingDailyUsage, setRemainingDailyUsage] = useState<number>(10);
 
   useEffect(() => {
     if (user?.id) {
       loadWishlist();
     }
-  }, [user, currentPage, pageSize, sortBy, sortDirection]);
+  }, [user?.id, currentPage, pageSize, sortBy, sortDirection]);
+
+  // Load daily usage when user is available
+  useEffect(() => {
+    const loadDailyUsage = async () => {
+      if (user?.id) {
+        try {
+          const remaining = await CouponService.getRemainingDailyUsage(user.id);
+          setRemainingDailyUsage(remaining);
+        } catch (error) {
+          console.error("Error loading daily usage:", error);
+        }
+      }
+    };
+
+    loadDailyUsage();
+  }, [user?.id]);
 
   const loadWishlist = async () => {
+    if (!user?.id) return;
+
+    setLoading(true);
     try {
       const paginationParams: PaginationParams = {
         page: currentPage,
@@ -39,7 +57,7 @@ const WishlistPage = () => {
         sortDirection,
       };
 
-      const response = await WishlistService.getUserWishlistPaginated(
+      const response = await WishlistService.getUserWishlist(
         user!.id,
         paginationParams
       );
@@ -71,7 +89,7 @@ const WishlistPage = () => {
     setCurrentPage(0);
   };
 
-  const handleRemoveFromWishlist = async (couponId: number) => {
+  const handleWishlistToggle = async (couponId: number) => {
     try {
       await WishlistService.removeFromWishlist(couponId, user!.id);
       toast.success("Removed from wishlist!");
@@ -82,38 +100,31 @@ const WishlistPage = () => {
   };
 
   const handleUseCoupon = async (couponId: number) => {
+    if (remainingDailyUsage <= 0) {
+      toast.error(
+        "You have reached your daily limit of 10 coupons. Please try again tomorrow!"
+      );
+      return;
+    }
+
     try {
       const success = await CouponService.useCoupon(couponId, user!.id);
       if (success) {
         toast.success("Coupon used successfully!");
-        loadWishlist(); // Refresh the list
+        setRemainingDailyUsage((prev) => Math.max(0, prev - 1));
+        loadWishlist();
       } else {
         toast.error("Failed to use coupon");
       }
     } catch (error: any) {
-      toast.error(error?.message || error);
-    }
-  };
-
-  const handleRevealCode = async (couponId: number) => {
-    try {
-      const code = await CouponService.revealCouponCode(couponId, user!.id);
-      toast.success(`Coupon Code: ${code}`);
-    } catch (error: any) {
-      toast.error(error?.message || error);
-    }
-  };
-
-  const getStatusBadge = (coupon: Coupon) => {
-    const now = new Date();
-    const expiryDate = new Date(coupon.expiryDate);
-
-    if (coupon.usedUserId) {
-      return <span className="status-badge used">Used</span>;
-    } else if (expiryDate < now) {
-      return <span className="status-badge expired">Expired</span>;
-    } else {
-      return <span className="status-badge active">Active</span>;
+      if (error.message?.includes("Daily usage limit reached")) {
+        toast.error(
+          "You have reached your daily limit of 10 coupons. Please try again tomorrow!"
+        );
+        setRemainingDailyUsage(0);
+      } else {
+        toast.error(error?.message || error);
+      }
     }
   };
 
@@ -159,6 +170,20 @@ const WishlistPage = () => {
         </button>
       </div>
 
+      {/* Daily usage info */}
+      {user && (
+        <div className="daily-usage-info">
+          <span className="usage-text">
+            Daily usage: {10 - remainingDailyUsage}/10 coupons used
+          </span>
+          {remainingDailyUsage <= 2 && (
+            <span className="usage-warning">
+              ⚠️ Only {remainingDailyUsage} coupons remaining today!
+            </span>
+          )}
+        </div>
+      )}
+
       {wishlistCoupons.length === 0 ? (
         <div className="empty-state">
           <p>Your wishlist is empty.</p>
@@ -168,49 +193,14 @@ const WishlistPage = () => {
         <>
           <div className="wishlist-grid">
             {wishlistCoupons.map((coupon) => (
-              <div key={coupon.id} className="wishlist-card">
-                <div className="card-header">
-                  <h4>{coupon.brandName}</h4>
-                  {getStatusBadge(coupon)}
-                </div>
-                <div className="card-content">
-                  <p className="coupon-description">{coupon.description}</p>
-                  <div className="coupon-details">
-                    <span className="discount">{coupon.discountValue}</span>
-                    <span className="type">{coupon.couponType}</span>
-                    {coupon.minPurchaseAmount && (
-                      <span className="min-amount">
-                        Min: ₹{coupon.minPurchaseAmount}
-                      </span>
-                    )}
-                    <span className="expiry">
-                      Expires: {dayjs(coupon.expiryDate).format("DD/MM/YYYY")}
-                    </span>
-                  </div>
-                </div>
-                <div className="card-actions">
-                  <button
-                    className="action-btn reveal-btn"
-                    onClick={() => handleRevealCode(coupon.id)}
-                    disabled={coupon.usedUserId != null}
-                  >
-                    Reveal Code
-                  </button>
-                  <button
-                    className="action-btn use-btn"
-                    onClick={() => handleUseCoupon(coupon.id)}
-                    disabled={coupon.usedUserId != null}
-                  >
-                    Use Coupon
-                  </button>
-                  <button
-                    className="action-btn remove-btn"
-                    onClick={() => handleRemoveFromWishlist(coupon.id)}
-                  >
-                    Remove
-                  </button>
-                </div>
-              </div>
+              <CouponCard
+                key={coupon.id}
+                coupon={coupon}
+                onWishlistToggle={handleWishlistToggle}
+                onUseCoupon={handleUseCoupon}
+                isInWishlist={true}
+                isWishlistLoading={false}
+              />
             ))}
           </div>
 

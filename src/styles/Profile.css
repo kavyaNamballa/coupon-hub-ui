@@ -132,94 +132,8 @@
 
 .coupons-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.user-coupon-card {
-  background: #f8f9fa;
-  border-radius: 12px;
-  padding: 20px;
-  border: 1px solid #e9ecef;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.user-coupon-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.coupon-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.coupon-header h4 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #333;
-  margin: 0;
-}
-
-.status-badge {
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.status-badge.active {
-  background: #d4edda;
-  color: #155724;
-}
-
-.status-badge.expired {
-  background: #f8d7da;
-  color: #721c24;
-}
-
-.status-badge.used {
-  background: #d1ecf1;
-  color: #0c5460;
-}
-
-.coupon-brand {
-  font-weight: 600;
-  color: #667eea;
-  margin-bottom: 8px;
-  font-size: 1rem;
-}
-
-.coupon-discount {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #28a745;
-  margin-bottom: 8px;
-}
-
-.coupon-description {
-  color: #666;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  margin-bottom: 12px;
-  cursor: help;
-}
-
-.coupon-details {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-size: 0.8rem;
-  color: #888;
-}
-
-.coupon-details span {
-  display: flex;
-  justify-content: space-between;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
 }
 
 /* Upload Modal */
@@ -321,12 +235,12 @@
 
 .form-group textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 100px;
 }
 
 .form-actions {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   justify-content: flex-end;
   margin-top: 30px;
   padding-top: 20px;
@@ -335,6 +249,7 @@
 
 .form-actions button {
   padding: 12px 24px;
+  border: none;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
@@ -344,32 +259,30 @@
 
 .form-actions button:first-child {
   background: #f8f9fa;
-  border: 2px solid #e1e5e9;
   color: #666;
+  border: 1px solid #e9ecef;
 }
 
 .form-actions button:first-child:hover {
   background: #e9ecef;
-  border-color: #adb5bd;
+  color: #333;
 }
 
 .submit-btn {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
-  border: none;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
 .submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
 .loading {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 300px;
+  min-height: 200px;
   font-size: 1.2rem;
   color: #667eea;
 }
@@ -381,9 +294,8 @@
   gap: 1rem;
   margin-bottom: 2rem;
   padding: 1rem;
-  background: white;
+  background: #f8f9fa;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -427,52 +339,52 @@
   .profile-container {
     padding: 20px 15px;
   }
-
+  
   .profile-header {
     flex-direction: column;
     gap: 20px;
     text-align: center;
   }
-
+  
   .profile-header h1 {
     font-size: 2rem;
   }
-
+  
   .profile-stats {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
-
+  
   .coupons-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
-
+  
   .upload-modal {
     margin: 10px;
     max-height: 95vh;
   }
-
+  
   .modal-header,
   .upload-form {
     padding: 20px;
   }
-
+  
   .form-actions {
     flex-direction: column;
   }
-
+  
   .form-actions button {
     width: 100%;
   }
-
+  
   .sort-controls {
+    flex-direction: column;
     gap: 0.5rem;
-    padding: 0.75rem;
   }
   
   .sort-btn {
-    padding: 0.4rem 0.8rem;
-    min-width: 70px;
-    font-size: 0.8rem;
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -480,27 +392,8 @@
   .profile-header h1 {
     font-size: 1.8rem;
   }
-
+  
   .user-coupons {
     padding: 20px;
-  }
-
-  .user-coupon-card {
-    padding: 16px;
-  }
-
-  .coupon-header h4 {
-    font-size: 1.1rem;
-  }
-
-  .sort-controls {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .sort-btn {
-    padding: 0.3rem 0.6rem;
-    min-width: 60px;
-    font-size: 0.75rem;
   }
 } 

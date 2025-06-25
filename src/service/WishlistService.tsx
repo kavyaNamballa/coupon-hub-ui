@@ -35,17 +35,7 @@ const removeFromWishlist = (
     });
 };
 
-const getUserWishlist = (userId: number): Promise<Coupon[]> => {
-  return api
-    .get(`${nameSpace}/user/${userId}`)
-    .then((res) => res.data)
-    .catch((err) => {
-      console.log("Error fetching wishlist: ", err);
-      throw err.response?.data || "Failed to fetch wishlist";
-    });
-};
-
-const getUserWishlistPaginated = (
+const getUserWishlist = (
   userId: number,
   pagination: PaginationParams = {}
 ): Promise<PaginatedResponse<Coupon>> => {
@@ -58,11 +48,11 @@ const getUserWishlistPaginated = (
 
   return api
     .get(
-      `${nameSpace}/user/${userId}/paginated?page=${page}&size=${size}&sortBy=${sortBy}&sortDirection=${sortDirection}`
+      `${nameSpace}/user/${userId}?page=${page}&size=${size}&sortBy=${sortBy}&sortDirection=${sortDirection}`
     )
     .then((res) => res.data)
     .catch((err) => {
-      console.log("Error fetching paginated wishlist: ", err);
+      console.log("Error fetching wishlist: ", err);
       throw err.response?.data || "Failed to fetch wishlist";
     });
 };
@@ -94,7 +84,6 @@ export const WishlistService = {
   addToWishlist,
   removeFromWishlist,
   getUserWishlist,
-  getUserWishlistPaginated,
   checkWishlistStatus,
   getWishlistCount,
 };

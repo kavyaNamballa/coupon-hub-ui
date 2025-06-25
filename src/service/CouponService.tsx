@@ -6,8 +6,6 @@ import {
 } from "../models/coupon.model";
 
 const nameSpace = "/api/coupons";
-
-// Interface for search criteria
 export interface CouponSearchParams {
   brand?: string;
   type?: string;
@@ -36,16 +34,7 @@ export interface CouponUploadData {
   expiryDate: string;
 }
 
-const getCouponsByBrand = (brand: string): Promise<Coupon[]> => {
-  return api
-    .get(nameSpace + `?brand=${encodeURIComponent(brand)}`)
-    .then((res) => res.data)
-    .catch((err) => {
-      throw err.response?.data || "Failed to fetch coupons";
-    });
-};
-
-const getCouponsByBrandPaginated = (
+const getCouponsByBrand = (
   brand: string,
   pagination: PaginationParams = {}
 ): Promise<PaginatedResponse<Coupon>> => {
@@ -77,7 +66,7 @@ const findAllCoupons = (): Promise<Coupon[]> => {
     });
 };
 
-const searchCouponsPaginated = (
+const searchCoupons = (
   params: CouponSearchParams,
   pagination: PaginationParams = {}
 ): Promise<PaginatedResponse<Coupon>> => {
@@ -124,7 +113,7 @@ const uploadCoupon = (
     });
 };
 
-const getUserUploadedCouponsPaginated = (
+const getUserUploadedCoupons = (
   userId: number,
   pagination: PaginationParams = {}
 ): Promise<PaginatedResponse<Coupon>> => {
@@ -146,69 +135,6 @@ const getUserUploadedCouponsPaginated = (
     });
 };
 
-const getActiveCouponsPaginated = (
-  pagination: PaginationParams = {}
-): Promise<PaginatedResponse<Coupon>> => {
-  const {
-    page = 0,
-    size = 10,
-    sortBy = "createdAt",
-    sortDirection = "DESC",
-  } = pagination;
-
-  return api
-    .get(
-      `${nameSpace}/active?page=${page}&size=${size}&sortBy=${sortBy}&sortDirection=${sortDirection}`
-    )
-    .then((res) => res.data)
-    .catch((err) => {
-      console.log("kavya error, ", err);
-      throw err.response?.data || "Failed to fetch active coupons";
-    });
-};
-
-const getExpiredCouponsPaginated = (
-  pagination: PaginationParams = {}
-): Promise<PaginatedResponse<Coupon>> => {
-  const {
-    page = 0,
-    size = 10,
-    sortBy = "createdAt",
-    sortDirection = "DESC",
-  } = pagination;
-
-  return api
-    .get(
-      `${nameSpace}/expired?page=${page}&size=${size}&sortBy=${sortBy}&sortDirection=${sortDirection}`
-    )
-    .then((res) => res.data)
-    .catch((err) => {
-      console.log("kavya error, ", err);
-      throw err.response?.data || "Failed to fetch expired coupons";
-    });
-};
-
-const getUsedCouponsPaginated = (
-  pagination: PaginationParams = {}
-): Promise<PaginatedResponse<Coupon>> => {
-  const {
-    page = 0,
-    size = 10,
-    sortBy = "createdAt",
-    sortDirection = "DESC",
-  } = pagination;
-
-  return api
-    .get(
-      `${nameSpace}/used/paginated?page=${page}&size=${size}&sortBy=${sortBy}&sortDirection=${sortDirection}`
-    )
-    .then((res) => res.data)
-    .catch((err) => {
-      console.log("kavya error, ", err);
-      throw err.response?.data || "Failed to fetch used coupons";
-    });
-};
-
 const useCoupon = (couponId: number, userId: number): Promise<boolean> => {
   return api
     .post(`${nameSpace}/use?couponId=${couponId}&userId=${userId}`)
@@ -219,29 +145,20 @@ const useCoupon = (couponId: number, userId: number): Promise<boolean> => {
     });
 };
 
-const revealCouponCode = (
-  couponId: number,
-  userId: number
-): Promise<string> => {
-  return api
-    .get(`${nameSpace}/reveal/${couponId}?userId=${userId}`)
-    .then((res) => res.data)
-    .catch((err) => {
-      console.log("Error revealing coupon code: ", err);
-      throw err.response?.data || "Failed to reveal coupon code";
-    });
-};
-
 export const CouponService = {
   getCouponsByBrand,
-  getCouponsByBrandPaginated,
   findAllCoupons,
-  searchCouponsPaginated,
+  searchCoupons,
   uploadCoupon,
-  getUserUploadedCouponsPaginated,
-  getActiveCouponsPaginated,
-  getExpiredCouponsPaginated,
-  getUsedCouponsPaginated,
+  getUserUploadedCoupons,
   useCoupon,
-  revealCouponCode,
+  async getRemainingDailyUsage(userId: number): Promise<number> {
+    try {
+      const response = await api.get(`${nameSpace}/daily-usage/${userId}`);
+      return response.data;
+    } catch (error: any) {
+      console.error("Error getting daily usage:", error);
+      return 0;
+    }
+  },
 };

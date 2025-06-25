@@ -1,0 +1,359 @@
+/* CouponCard.css - Dedicated styles for coupon cards */
+.coupon-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 320px;
+  max-width: 100%;
+}
+
+.coupon-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.coupon-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.coupon-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.coupon-brand h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  color: #2c3e50;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.wishlist-btn {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
+  flex-shrink: 0;
+}
+
+.wishlist-btn:hover {
+  background: rgba(102, 126, 234, 0.1);
+  transform: scale(1.1);
+}
+
+.wishlist-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.wishlist-btn.filled {
+  animation: heartBeat 0.3s ease-in-out;
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.coupon-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  min-height: 0;
+}
+
+.coupon-description {
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  min-height: 2.7em;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  flex-shrink: 0;
+}
+
+.coupon-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-height: 0;
+}
+
+.coupon-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.discount-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e74c3c;
+  background: rgba(231, 76, 60, 0.1);
+  padding: 3px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.coupon-type {
+  font-size: 0.8rem;
+  color: #3498db;
+  font-weight: 600;
+  background: rgba(52, 152, 219, 0.1);
+  padding: 3px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.min-purchase {
+  font-size: 0.8rem;
+  color: #f39c12;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.coupon-code-section {
+  background: #f8f9fa;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px dashed #dee2e6;
+  margin: 8px 0;
+  flex-shrink: 0;
+}
+
+.revealed-code {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.code-label {
+  font-size: 0.7rem;
+  color: #666;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.code-value {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #27ae60;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+  background: rgba(39, 174, 96, 0.1);
+  padding: 6px 8px;
+  border-radius: 4px;
+  text-align: center;
+  word-break: break-all;
+}
+
+.hidden-code {
+  text-align: center;
+}
+
+.code-placeholder {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #999;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2px;
+}
+
+.coupon-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: auto;
+  flex-wrap: wrap;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-bottom: 12px;
+}
+
+.expiry-date {
+  color: #95a5a6;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.coupon-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: auto;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.reveal-btn {
+  background: #3498db;
+  color: white;
+}
+
+.reveal-btn:hover:not(:disabled) {
+  background: #2980b9;
+  transform: translateY(-1px);
+}
+
+.use-btn {
+  background: #27ae60;
+  color: white;
+}
+
+.use-btn:hover:not(:disabled) {
+  background: #229954;
+  transform: translateY(-1px);
+}
+
+/* Status badges */
+.status-badge {
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.status-badge.active {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-badge.used {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.status-badge.expired {
+  background: #fff3cd;
+  color: #856404;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .coupon-card {
+    padding: 16px;
+    min-height: 300px;
+  }
+  
+  .coupon-brand h4 {
+    font-size: 1.1rem;
+  }
+  
+  .coupon-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .action-btn {
+    width: 100%;
+    min-height: 44px;
+    font-size: 0.9rem;
+  }
+  
+  .coupon-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .coupon-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .coupon-card {
+    padding: 14px;
+    min-height: 280px;
+  }
+  
+  .coupon-brand h4 {
+    font-size: 1rem;
+  }
+  
+  .coupon-description {
+    font-size: 0.85rem;
+  }
+  
+  .code-value {
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+  
+  .action-btn {
+    font-size: 0.8rem;
+    padding: 8px 10px;
+    min-height: 40px;
+  }
+} 
