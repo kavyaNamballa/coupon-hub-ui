@@ -23,10 +23,6 @@ const CouponCard: React.FC<CouponCardProps> = ({
   const { user } = useAuth();
   const [isRevealed, setIsRevealed] = useState(false);
 
-  const handleReveal = () => {
-    setIsRevealed(true);
-  };
-
   const handleUse = async () => {
     setIsRevealed(true);
     onUseCoupon(coupon.id);
@@ -41,6 +37,11 @@ const CouponCard: React.FC<CouponCardProps> = ({
     });
   };
 
+  const truncateDescription = (description: string, maxLength: number = 50) => {
+    if (description.length <= maxLength) return description;
+    return description.substring(0, maxLength) + "...";
+  };
+
   const getStatusBadge = () => {
     if (coupon.usedUserId) {
       return <span className="status-badge used">Used</span>;
@@ -51,7 +52,6 @@ const CouponCard: React.FC<CouponCardProps> = ({
     return <span className="status-badge active">Active</span>;
   };
 
-  const isUsed = coupon.usedUserId != null;
   const isExpired = new Date(coupon.expiryDate) < new Date();
 
   return (
@@ -116,12 +116,12 @@ const CouponCard: React.FC<CouponCardProps> = ({
       </div>
 
       {/* Action buttons - only show if not hidden and not used */}
-      {!hideActions && !isUsed && (
+      {!hideActions && !isRevealed && (
         <div className="coupon-actions">
           <button
             className="action-btn use-btn"
             onClick={handleUse}
-            disabled={isUsed || isExpired}
+            disabled={isRevealed || isExpired}
           >
             💳 Use Coupon
           </button>
@@ -129,7 +129,7 @@ const CouponCard: React.FC<CouponCardProps> = ({
       )}
 
       {/* Show "Used" status if coupon is used */}
-      {!hideActions && isUsed && (
+      {!hideActions && isRevealed && (
         <div className="coupon-actions">
           <button className="action-btn use-btn" disabled>
             ✓ Used

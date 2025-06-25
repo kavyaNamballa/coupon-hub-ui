@@ -135,7 +135,16 @@ const getUserUploadedCoupons = (
     });
 };
 
-const useCoupon = (couponId: number, userId: number): Promise<boolean> => {
+const getUsedCouponsCount = (userId: number): Promise<number> => {
+  return api
+    .get(`${nameSpace}/user/${userId}/usedCount`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err.response?.data || "Failed to load used coupons count";
+    });
+};
+
+const useCoupon = (couponId: number, userId: number): Promise<Coupon> => {
   return api
     .post(`${nameSpace}/use?couponId=${couponId}&userId=${userId}`)
     .then((res) => res.data)
@@ -148,6 +157,7 @@ const useCoupon = (couponId: number, userId: number): Promise<boolean> => {
 export const CouponService = {
   getCouponsByBrand,
   findAllCoupons,
+  getUsedCouponsCount,
   searchCoupons,
   uploadCoupon,
   getUserUploadedCoupons,

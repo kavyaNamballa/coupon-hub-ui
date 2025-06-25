@@ -8,7 +8,6 @@ import { CouponService, CouponUploadData } from "../service/CouponService";
 import { WishlistService } from "../service/WishlistService";
 import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
-import dayjs from "dayjs";
 import "../styles/Profile.css";
 import { brands } from "../enum/brands";
 import Pagination from "../components/Pagination";
@@ -32,6 +31,9 @@ const Profile = () => {
   // Wishlist count
   const [wishlistCount, setWishlistCount] = useState(0);
 
+  // Used coupons count
+  const [usedCouponsCount, setUsedCouponsCount] = useState(0);
+
   const [uploadForm, setUploadForm] = useState<CouponUploadData>({
     code: "",
     couponType: "percentage",
@@ -52,8 +54,14 @@ const Profile = () => {
 
   useEffect(() => {
     if (user?.id) {
-      loadUserCoupons();
       loadWishlistCount();
+      loadUsedCouponsCount();
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (user?.id) {
+      loadUserCoupons();
     }
   }, [user, currentPage, pageSize, sortBy, sortDirection]);
 
@@ -85,6 +93,15 @@ const Profile = () => {
       setWishlistCount(count);
     } catch (error) {
       console.error("Error loading wishlist count:", error);
+    }
+  };
+
+  const loadUsedCouponsCount = async () => {
+    try {
+      const count = await CouponService.getUsedCouponsCount(user!.id);
+      setUsedCouponsCount(count);
+    } catch (error) {
+      console.error("Error loading used coupons count:", error);
     }
   };
 
@@ -134,14 +151,6 @@ const Profile = () => {
     }
   };
 
-  const handleWishlistChange = () => {
-    loadWishlistCount();
-  };
-
-  const handleCouponUsed = () => {
-    loadUserCoupons();
-  };
-
   const handleWishlistToggle = async (couponId: number) => {
     if (!user?.id) {
       toast.error("Please login to add to wishlist");
@@ -185,24 +194,6 @@ const Profile = () => {
     }
   };
 
-  const truncateDescription = (description: string, maxLength: number = 50) => {
-    if (description.length <= maxLength) return description;
-    return description.substring(0, maxLength) + "...";
-  };
-
-  const getStatusBadge = (coupon: Coupon) => {
-    const now = new Date();
-    const expiryDate = new Date(coupon.expiryDate);
-
-    if (coupon.usedUserId) {
-      return <span className="status-badge used">Used</span>;
-    } else if (expiryDate < now) {
-      return <span className="status-badge expired">Expired</span>;
-    } else {
-      return <span className="status-badge active">Active</span>;
-    }
-  };
-
   if (loading) {
     return (
       <div className="profile-container">
@@ -243,9 +234,7 @@ const Profile = () => {
         </div>
         <div className="stat-card">
           <h3>Used Coupons</h3>
-          <span className="stat-number">
-            {userCoupons.filter((c) => c.usedUserId).length}
-          </span>
+          <span className="stat-number">{usedCouponsCount}</span>
         </div>
         <div className="stat-card">
           <h3>Wishlist</h3>

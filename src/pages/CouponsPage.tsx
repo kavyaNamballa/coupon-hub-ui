@@ -135,6 +135,18 @@ export const CouponsPage = () => {
     setCurrentPage(0);
   };
 
+  const revealCouponCode = (coupon1: Coupon) => {
+    console.log("coupon1", coupon1);
+    if (!paginationData) return;
+    const updatedContent = paginationData.content.map((coupon) =>
+      coupon.id === coupon1.id ? { ...coupon, code: coupon1.code } : coupon
+    );
+    setPaginationData({
+      ...paginationData,
+      content: updatedContent,
+    });
+  };
+
   const handleWishlistToggle = async (couponId: number) => {
     if (!user?.id) {
       toast.error("Please login to add to wishlist");
@@ -172,10 +184,11 @@ export const CouponsPage = () => {
       return;
     }
     try {
-      const success = await CouponService.useCoupon(couponId, user.id);
-      if (success) {
+      const result = await CouponService.useCoupon(couponId, user.id);
+      if (result) {
         toast.success("Coupon used successfully!");
         setRemainingDailyUsage((prev) => Math.max(0, prev - 1));
+        revealCouponCode(result);
         setCurrentPage(0);
       } else {
         toast.error("Failed to use coupon");
